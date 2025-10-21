@@ -1,24 +1,40 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../Pages/Home"
+import Home from "../Pages/Home";
+import Skills from "../Pages/Skills"; // <-- new page
+import Dashboard from "../Pages/Dashboard"; // <-- new page
+import EnrolledCourse from "../Pages/EnrolledCourse"; // <-- new page
 import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage";
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-        {
-        index: true, /* path: '/' or index:true diye default page set kora jai */
+      {
+        index: true, // default page
         element: <Home />,
-        loader: () => fetch('/Skills.json')
-        },
-    ]
+        loader: () => fetch('/Skills.json'), // optional
+      },
+      {
+        path: 'Skills', // /Skills
+        element: <Skills />,
+      },
+      {
+        path: 'Dashboard', // /Dashboard
+        element: <Dashboard />,
+      },
+      {
+        path: 'EnrolledCourse', // /EnrolledCourse
+        element: <EnrolledCourse />,
+      },
+    ],
   },
   {
     path: '*',
-    element: <ErrorPage/>
-  }
-])
+    element: <ErrorPage />,
+  },
+]);
 
-export default router 
+export default router;
