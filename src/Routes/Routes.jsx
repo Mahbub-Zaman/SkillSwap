@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../Pages/Home";
-import Skills from "../Pages/Skills"; // <-- new page
-import Dashboard from "../Pages/Dashboard"; // <-- new page
-import EnrolledCourse from "../Pages/EnrolledCourse"; // <-- new page
+import Skills from "../Pages/Skills";
+import Dashboard from "../Pages/Dashboard";
+import EnrolledCourse from "../Pages/EnrolledCourse";
+import Profile from "../Pages/Profile";           // for profile page
+import UpdateProfile from "../Pages/UpdateProfile"; // for update profile
+import SignUp from "../Pages/SignUp";             // for signup
 import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage";
 
@@ -28,6 +31,15 @@ const router = createBrowserRouter([
       {
         path: 'EnrolledCourse', // /EnrolledCourse
         element: <EnrolledCourse />,
+      },
+      { 
+        path: 'profile', element: <Profile /> 
+      },
+      { 
+        path: 'update-profile', element: <UpdateProfile /> 
+      },
+      { 
+        path: 'signup', element: <SignUp /> 
       },
     ],
   },
