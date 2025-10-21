@@ -1,11 +1,9 @@
-import React from 'react';
+import HeroSlider from '../components/HeroSlider';
 
-const Home = () => {
-    return (
-        <div>
-            <h1>HomePage</h1>
-        </div>
-    );
-};
-
+const Home = () => (
+  <div>
+    {/* HeroSlider using Swiper */}
+    <HeroSlider />
+  </div>
+);
 export default Home;
