@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const SkillCard = ({ skill }) => {
   const { image, skillName, rating, price } = skill;
@@ -20,10 +21,10 @@ const SkillCard = ({ skill }) => {
         <p className="text-yellow-500 mb-2">⭐ {rating}</p>
         <p className="font-bold mb-4">${price}</p>
 
-        {/* Button at the bottom */}
-        <button className="btn btn-primary btn-sm w-full mt-auto">
-          View Details
-        </button>
+      {/* Button at the bottom */}
+      <Link to={`/Skills/${skill.skillId}`} className="btn btn-primary btn-sm w-full mt-auto">
+        View Details
+      </Link>
       </div>
     </div>
   );

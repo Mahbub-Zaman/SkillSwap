@@ -6,7 +6,7 @@ const Footer = () => {
     <div>
         <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
                 {/* Company Info */}
-                <aside className="flex flex-col ml-7">
+                <aside className="flex flex-col ml-0 md:ml-12">
                     <img src="/skill.png" alt="SkillSwap Logo" className="w-14 h-14 mb-2" />
                     <h2 className="text-2xl font-bold">SkillSwap</h2>
                     <p className="mt-1 text-sm text-gray-600">

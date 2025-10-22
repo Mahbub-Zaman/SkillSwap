@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import SkillCard from "../components/SkillCard";
+import React from 'react';
+import Chart from '../components/DashBoard/Chart';
+import DashboardSkills from '../components/DashBoard/DashboardSkills';
 
 const Dashboard = () => {
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    fetch('/Skills.json')
-      .then((res) => res.json())
-      .then((data) => {
-        // Sort by rating descending and take top 6
-        const topRated = data
-          .sort((a, b) => b.rating - a.rating) // highest rating first
-          .slice(0, 6);
-        setSkills(topRated);
-      })
-      .catch((err) => console.error('Error fetching skills:', err));
-  }, []);
-
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Top Rated Skills</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {skills.map((skill) => (
-          <SkillCard key={skill.skillId} skill={skill} />
-        ))}
-      </div>
+    <div>
+      <DashboardSkills />
+      <Chart />
     </div>
   );
 };

@@ -8,6 +8,8 @@ import UpdateProfile from "../Pages/UpdateProfile"; // for update profile
 import SignUp from "../Pages/SignUp";             // for signup
 import MainLayout from "../Layouts/MainLayout";
 import ErrorPage from "../Pages/ErrorPage";
+import SkillDetails from "../Pages/SkillDetails";
+import LogIn from "../Pages/login";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
         element: <Skills />,
       },
       {
+        path: 'Skills/:skillId', // /Skills
+        element: <SkillDetails />,
+      },
+      {
         path: 'Dashboard', // /Dashboard
         element: <Dashboard />,
       },
@@ -33,13 +39,20 @@ const router = createBrowserRouter([
         element: <EnrolledCourse />,
       },
       { 
-        path: 'profile', element: <Profile /> 
+        path: 'profile', 
+        element: <Profile /> 
       },
       { 
-        path: 'update-profile', element: <UpdateProfile /> 
+        path: 'update-profile', 
+        element: <UpdateProfile /> 
       },
       { 
-        path: 'signup', element: <SignUp /> 
+        path: 'login', 
+        element: <LogIn /> 
+      },
+      { 
+        path: 'signup', 
+        element: <SignUp /> 
       },
     ],
   },
