@@ -55,7 +55,7 @@ const NavBar = () => {
                 </>
             }
             <li>
-            <NavLink to="faq">Browse Skills</NavLink>
+            <NavLink to="faq">Help</NavLink>
             </li>
         </ul>
         </div>
