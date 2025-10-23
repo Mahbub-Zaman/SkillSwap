@@ -1,95 +1,127 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAuth from "../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { signInUser, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/"; // Redirect back here after login
 
-  const handleLogin = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Here you can add your login logic or Firebase auth
-    console.log('Email:', email, 'Password:', password);
+    setError("");
+    setSuccess(false);
+
+    try {
+      await signInUser(email, password);
+      setSuccess(true);
+      toast.success("✅ Login successful!");
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+      toast.error(err.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success("✅ Signed in with Google!");
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+      toast.error(err.message);
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-        <div>
-           <h1 className="text-4xl font-bold mb-6 text-center">Welcome Back!</h1> 
-            <form 
-                onSubmit={handleLogin} 
-                className="bg-white shadow-md rounded-lg p-8 w-96"
-            >
-                {/* Email */}
-                <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Email</label>
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required
-                />
-                </div>
+      <title>SkillSwap | LogIn</title>
+      <Toaster position="top-right" reverseOrder={false} />
+      <div>
+        <h1 className="text-4xl font-bold mb-6 text-center">Welcome Back!</h1>
+        <form onSubmit={handleLogin} className="bg-white shadow-md rounded-lg p-8 w-96">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold mb-2">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
 
-                {/* Password */}
-                <div className="mb-2">
-                <label className="block text-gray-700 font-semibold mb-2">Password</label>
-                <input
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required
-                />
-                </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold mb-2">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border border-gray-300 rounded-md p-2 pr-20 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-2.5 right-2 px-2 py-1 bg-gray-100 rounded text-gray-600 hover:bg-gray-200 transition"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </div>
 
-                {/* Forget Password */}
-                <div className="mb-4 text-right">
-                <Link to="/forgot-password" className="text-purple-500 text-sm hover:underline">
-                    Forgot Password?
-                </Link>
-                </div>
+          <div className="mb-4 text-right">
+            <Link to="/forgot-password" className="text-purple-500 text-sm hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
 
-                {/* Login Button */}
-                <button 
-                type="submit" 
-                className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 rounded-md transition-colors duration-300"
-                >
-                Login
-                </button>
-            </form>
+          <button
+            type="submit"
+            className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 rounded-md transition-colors duration-300"
+          >
+            Login
+          </button>
+
+          {error && <p className="text-red-500 mt-3">{error}</p>}
+          {success && <p className="text-green-500 mt-3">✅ Logged in successfully!</p>}
+
+          <h3 className="text-center font-semibold mt-2 text-[#c400fa]">or</h3>
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            className="btn bg-white text-black border w-full flex items-center justify-center py-2 mt-2 gap-2"
+          >
+            <FcGoogle className="text-xl" /> {/* Google Icon */}
+            Sign in with Google
+          </button>
+        </form>
+
+        <div className="bg-white shadow-md rounded-lg p-4 w-96 mt-2 flex justify-center">
+          <h3>
+            New Here?{" "}
+            <Link to="/signup" className="text-[#c400fa] underline">
+              Create an account
+            </Link>
+          </h3>
         </div>
-
-        <div className='bg-white shadow-md rounded-lg p-4 w-96 mt-2 flex justify-center'>
-            <h3>
-                New Here?{' '}
-                <Link to="/signup" className='text-[#c400fa] underline'>
-                    Create an account
-                </Link>
-            </h3>
-        </div>
-
-
-        <div className='bg-white shadow-md rounded-lg p-4 w-96 mt-2'>
-            <h3 className="text-center text-bold">Other ways to sign in</h3>
-            {/* Google */}
-            <button className="btn bg-white text-black border-[#e5e5e5] w-full flex items-center justify-center py-2 mt-2">
-                <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <g>
-                        <path d="m0 0H512V512H0" fill="#fff"></path>
-                        <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
-                        <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
-                        <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
-                        <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
-                    </g>
-                </svg>
-                Login with Google
-            </button>
-        </div>
-
-
+      </div>
     </div>
   );
 };

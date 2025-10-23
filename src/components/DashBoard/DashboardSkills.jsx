@@ -19,6 +19,7 @@ const DashboardSkills = () => {
       const updatedSkills = skills.filter((skill) => skill.skillId !== skillId);
       setSkills(updatedSkills);
       localStorage.setItem("enrolledCourses", JSON.stringify(updatedSkills));
+      window.dispatchEvent(new Event("enrolledCoursesUpdated"));
       setLoadingId(null); // stop loading
 
       toast.success("Course removed successfully!");

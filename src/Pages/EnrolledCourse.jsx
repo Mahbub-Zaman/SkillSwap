@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import SkillCard from '../components/SkillCard';
+
 
 const EnrolledCourse = () => {
   const [enrolled, setEnrolled] = useState([]);
@@ -23,11 +25,17 @@ const EnrolledCourse = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+      <title>SkillSwap | Enrolled Course</title>
       <h1 className="text-3xl font-bold mb-6 text-center">Enrolled Courses</h1>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {enrolled.map((skill) => (
           <SkillCard key={skill.skillId} skill={skill} />
         ))}
+      </div>
+      <div className="flex justify-center gap-4 mt-8">
+        <Link to="/Skills" className="btn btn-primary">
+          Browse More Skills
+        </Link>
       </div>
     </div>
   );

@@ -58,11 +58,11 @@ const Trending = () => {
 
               {/* Skill Info */}
               <div className="flex flex-col flex-1">
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                <h3 className="text-[18px] font-semibold mb-2 text-gray-800">
                   {skill.skillName}
                 </h3>
                 <div className="flex items-center justify-between text-sm">
-                  <p className="font-semibold text-gray-700">${skill.price}</p>
+                  <p className="font-semibold text-green-700">${skill.price}</p>
                   <p className="text-yellow-500 font-semibold">
                     ⭐ {skill.rating}
                   </p>

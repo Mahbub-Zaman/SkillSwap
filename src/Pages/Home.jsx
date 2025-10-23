@@ -7,6 +7,7 @@ import HowItWorks from '../components/HowItWorks';
 
 const Home = () => (
   <div>
+    <title>SkillSwap | Home</title>
     {/* HeroSlider using Swiper */}
     <HeroSlider />
     <div className='bg-gray-300'>

@@ -1,65 +1,89 @@
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoute from "../Routes/PrivateRoute";
+
+// Pages
 import Home from "../Pages/Home";
 import Skills from "../Pages/Skills";
 import Dashboard from "../Pages/Dashboard";
-import EnrolledCourse from "../Pages/EnrolledCourse";
-import Profile from "../Pages/Profile";           // for profile page
-import UpdateProfile from "../Pages/UpdateProfile"; // for update profile
-import SignUp from "../Pages/SignUp";             // for signup
-import MainLayout from "../Layouts/MainLayout";
-import ErrorPage from "../Pages/ErrorPage";
+import EnrolledCourse from "../Pages/EnrolledCourse"
+import Profile from "../Pages/Profile";
+import UpdateProfile from "../Pages/UpdateProfile";
+import Signup from "../Pages/Signup";
+import Login from "../Pages/Login";
+import ResetPassword from "../Pages/ForgotPassword";
+import FAQPage from "../Pages/Faq";
 import SkillDetails from "../Pages/SkillDetails";
-import LogIn from "../Pages/login";
+import ErrorPage from "../Pages/ErrorPage";
+
+// Layout
+import MainLayout from "../Layouts/MainLayout";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
+      // Home page (default)
       {
-        index: true, // default page
+        index: true,
         element: <Home />,
-        loader: () => fetch('/Skills.json'), // optional
+        loader: () => fetch("/Skills.json"),
+      },
+
+      // Public pages
+      { path: "skills", element: <Skills /> },
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <Signup /> },
+      { path: "forgot-password", element: <ResetPassword /> },
+      { path: "faq", element: <FAQPage /> },
+
+      // Protected routes
+      {
+        path: "skills/:skillId",
+        element: (
+          <PrivateRoute>
+            <SkillDetails />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'Skills', // /Skills
-        element: <Skills />,
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'Skills/:skillId', // /Skills
-        element: <SkillDetails />,
+        path: "/EnrolledCourse",
+        element: (
+          <PrivateRoute>
+            <EnrolledCourse />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'Dashboard', // /Dashboard
-        element: <Dashboard />,
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'EnrolledCourse', // /EnrolledCourse
-        element: <EnrolledCourse />,
-      },
-      { 
-        path: 'profile', 
-        element: <Profile /> 
-      },
-      { 
-        path: 'update-profile', 
-        element: <UpdateProfile /> 
-      },
-      { 
-        path: 'login', 
-        element: <LogIn /> 
-      },
-      { 
-        path: 'signup', 
-        element: <SignUp /> 
+        path: "update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
-  {
-    path: '*',
-    element: <ErrorPage />,
-  },
+
+  // Catch-all route for undefined URLs
+  { path: "*", element: <ErrorPage /> },
 ]);
 
 export default router;

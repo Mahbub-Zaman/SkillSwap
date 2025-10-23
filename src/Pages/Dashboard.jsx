@@ -5,6 +5,7 @@ import DashboardSkills from '../components/DashBoard/DashboardSkills';
 const Dashboard = () => {
   return (
     <div>
+      <title>SkillSwap | Dashboard</title>
       <DashboardSkills />
       <Chart />
     </div>

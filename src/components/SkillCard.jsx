@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-const SkillCard = ({ skill }) => {
+const SkillCard = ({ skill, index }) => {
   const { image, skillName, rating, price } = skill;
 
   return (
-    <div className="card bg-base-100 shadow-md rounded-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 flex flex-col p-4">
+    <div
+  className="card bg-base-100 shadow-md rounded-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 flex flex-col p-4"
+  data-aos="fade-up"
+  data-aos-delay={Math.min(index * 50, 200)} // reduced delay
+>
       {/* Image inside a bordered box */}
-      <div className=" rounded-lg overflow-hidden mb-4">
+      <div className="rounded-lg overflow-hidden mb-4">
         <img
           src={image}
           alt={skillName}
@@ -21,10 +25,10 @@ const SkillCard = ({ skill }) => {
         <p className="text-yellow-500 mb-2">⭐ {rating}</p>
         <p className="font-bold mb-4">${price}</p>
 
-      {/* Button at the bottom */}
-      <Link to={`/Skills/${skill.skillId}`} className="btn btn-primary btn-sm w-full mt-auto">
-        View Details
-      </Link>
+        {/* Button at the bottom */}
+        <Link to={`/skills/${skill.skillId}`} className="btn btn-primary btn-sm w-full mt-auto">
+          View Details
+        </Link>
       </div>
     </div>
   );

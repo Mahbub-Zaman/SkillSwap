@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
 
-  // Fetch reviews from JSON file
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 500, once: true });
+  }, []);
+
+  // Fetch reviews
   useEffect(() => {
     fetch('/reviews.json')
       .then(res => res.json())
@@ -13,13 +20,10 @@ const Reviews = () => {
       .catch(err => console.error('Error loading reviews:', err));
   }, []);
 
-  // Handle "See More" / "See Less"
   const handleToggle = () => {
     if (visibleCount >= reviews.length) {
-      // If all reviews are visible, reset to 6
       setVisibleCount(6);
     } else {
-      // Otherwise, show next 3 reviews
       setVisibleCount(prev => Math.min(prev + 3, reviews.length));
     }
   };
@@ -33,6 +37,8 @@ const Reviews = () => {
         {reviews.slice(0, visibleCount).map((review, index) => (
           <div
             key={index}
+            data-aos="fade-up"
+            data-aos-delay={index * 100} // stagger animation
             className="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <div className="flex items-center mb-3">
@@ -48,9 +54,7 @@ const Reviews = () => {
               {Array.from({ length: 5 }).map((_, starIndex) => (
                 <span
                   key={starIndex}
-                  className={`${
-                    starIndex < review.star ? 'text-yellow-400' : 'text-gray-300'
-                  }`}
+                  className={`${starIndex < review.star ? 'text-yellow-400' : 'text-gray-300'}`}
                 >
                   ★
                 </span>

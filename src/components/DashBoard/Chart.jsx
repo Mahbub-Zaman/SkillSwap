@@ -29,9 +29,28 @@ const Chart = () => {
   const [enrolled, setEnrolled] = useState([]);
 
   useEffect(() => {
-    const courses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-    setEnrolled(courses);
+    const updateCourses = () => {
+      const courses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+      setEnrolled(courses);
+    };
+
+    updateCourses();
+
+    window.addEventListener("enrolledCoursesUpdated", updateCourses);
+    return () => {
+      window.removeEventListener("enrolledCoursesUpdated", updateCourses);
+    };
   }, []);
+
+  if (enrolled.length === 0) {
+    return (
+      <div className="flex justify-center py-10">
+        <Link to="/Skills" className="btn btn-primary">
+          Browse More Skills
+        </Link>
+      </div>
+    );
+  }
 
   const chartData = enrolled.map((course, index) => ({
     name: course.skillName,
@@ -43,23 +62,19 @@ const Chart = () => {
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-8 text-center">Dashboard</h1>
       <div className="bg-white rounded-xl shadow-lg p-6">
-        {enrolled.length === 0 ? (
-          <p className="text-center text-gray-600">You have not enrolled in any course yet.</p>
-        ) : (
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" tick={{ fontSize: 14 }} />
-              <YAxis tick={{ fontSize: 14 }} />
-              <Tooltip />
-              <Bar dataKey="uv" shape={TriangleBar} label={{ position: 'top', fontSize: 12 }}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        )}
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" tick={{ fontSize: 14 }} />
+            <YAxis tick={{ fontSize: 14 }} />
+            <Tooltip />
+            <Bar dataKey="uv" shape={TriangleBar} label={{ position: 'top', fontSize: 12 }}>
+              {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="flex justify-center gap-4 mt-8">

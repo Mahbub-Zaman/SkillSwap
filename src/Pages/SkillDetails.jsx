@@ -20,6 +20,13 @@ const SkillDetails = () => {
       .catch(err => console.error(err));
   }, [skillId]);
 
+  // Set page title when skill is loaded
+  useEffect(() => {
+    if (skill) {
+      document.title = `SkillSwap | ${skill.skillName}`;
+    }
+  }, [skill]);
+
   if (!skill) return <p className="text-center mt-10">Loading...</p>;
 
   const handleSubmit = (e) => {
