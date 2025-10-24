@@ -3,6 +3,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { FiLogIn } from "react-icons/fi";
+import { IoPersonAdd } from "react-icons/io5";
+import { FiLogOut } from "react-icons/fi";
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
@@ -154,20 +157,22 @@ const NavBar = () => {
                 onClick={handleLogout}
                 className="btn btn-error btn-sm ml-2 h-10 w-auto text-[15px] px-4"
             >
-                Logout
+                <FiLogOut />Logout
             </button>
         </>
     ) : (
         <>
             {/* Login and Signup buttons when not logged in */}
             <Link to="/signup">
-                <button className="btn btn-outline btn-primary btn-sm h-10 w-auto text-[15px] px-4">
-                    Sign Up
+                <button className="btn btn-outline btn-primary btn-sm h-10 w-auto text-[15px] px-4 flex items-center gap-2">
+                    <IoPersonAdd />
+                    <span className="hidden md:inline">Sign Up</span>
                 </button>
             </Link>
+
             <Link to="/login">
                 <button className="btn btn-primary btn-sm ml-2 h-10 w-auto text-[15px] px-4">
-                    Login
+                    <FiLogIn />Login
                 </button>
             </Link>
         </>
