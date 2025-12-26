@@ -39,7 +39,7 @@ const Reviews = () => {
             key={index}
             data-aos="fade-up"
             data-aos-delay={index * 100} // stagger animation
-            className="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="bg-[var(--color-neutral)] p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <div className="flex items-center mb-3">
               <div className="w-10 h-10 rounded-full bg-purple-200 flex items-center justify-center font-bold text-purple-800">
@@ -60,7 +60,7 @@ const Reviews = () => {
                 </span>
               ))}
             </div>
-            <p className="text-gray-700">{review.comment}</p>
+            <p className="font-normal">{review.comment}</p>
           </div>
         ))}
       </div>

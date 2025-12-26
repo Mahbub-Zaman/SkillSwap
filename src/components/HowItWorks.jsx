@@ -41,7 +41,7 @@ const HowItWorks = () => {
             key={index}
             data-aos="fade-up"
             data-aos-delay={index * 150}
-            className="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="flex flex-col items-center text-center bg-base-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             {step.icon}
             <h3 className="text-xl font-semibold mb-2">{step.title}</h3>

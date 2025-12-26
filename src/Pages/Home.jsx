@@ -10,14 +10,21 @@ const Home = () => (
     <title>SkillSwap | Home</title>
     {/* HeroSlider using Swiper */}
     <HeroSlider />
-    <div className='bg-gray-300'>
+    <div className='bg-[var(--color-base-gray)]'>
       <Cards/>
+    </div>
+    <div className='bg-[var(--color-base-white)]'>
       <TrendingCourses/>
+    </div>
+    <div className='bg-[var(--color-base-gray)]'>
       <TopProviders/>
+    </div>
+    <div className='bg-[var(--color-base-white)]'>
       <HowItWorks/>
+    </div>
+    <div className='bg-[var(--color-base-gray)]'>
       <Reviews/>
     </div>
-    
   </div>
 );
 export default Home;

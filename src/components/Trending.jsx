@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -21,7 +22,7 @@ const Trending = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
-      <h2 className="text-3xl font-bold text-center mb-8">
+      <h2 className="text-3xl font-bold text-center text-secondary mb-8">
         🔰 Trending Skills
       </h2>
 
@@ -46,7 +47,14 @@ const Trending = () => {
       >
         {skills.map((skill, index) => (
           <SwiperSlide key={index}>
-            <div className="relative bg-white/70 backdrop-blur-md rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-2 hover:rotate-1 transition-all duration-300 p-5 border border-purple-100">
+            <Link
+              to={`/skills/${skill.skillId}`}
+              className="relative flex flex-col p-5 rounded-xl border border-gray-200 dark:border-base-200
+                         bg-white/90 dark:bg-base-100 shadow-md hover:shadow-xl
+                         transform hover:-translate-y-2 hover:rotate-1 transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay={Math.min(index * 50, 200)}
+            >
               {/* Image */}
               <div className="rounded-lg overflow-hidden mb-4">
                 <img
@@ -58,14 +66,12 @@ const Trending = () => {
 
               {/* Skill Info */}
               <div className="flex flex-col flex-1">
-                <h3 className="text-[18px] font-semibold mb-2 text-gray-800">
+                <h3 className="text-[18px] font-semibold mb-2 text-base-content">
                   {skill.skillName}
                 </h3>
                 <div className="flex items-center justify-between text-sm">
                   <p className="font-semibold text-green-700">${skill.price}</p>
-                  <p className="text-yellow-500 font-semibold">
-                    ⭐ {skill.rating}
-                  </p>
+                  <p className="text-yellow-500 font-semibold">⭐ {skill.rating}</p>
                   <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">
                     {skill.category}
                   </span>
@@ -74,7 +80,7 @@ const Trending = () => {
 
               {/* Gradient border glow */}
               <div className="absolute inset-0 rounded-xl border-2 border-transparent hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"></div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

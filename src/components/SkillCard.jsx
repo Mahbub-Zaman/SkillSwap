@@ -6,7 +6,7 @@ const SkillCard = ({ skill, index }) => {
 
   return (
     <div
-  className="card bg-base-100 shadow-md rounded-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 flex flex-col p-4"
+  className="card bg-[var(--color-neutral)] shadow-md rounded-lg hover:shadow-xl hover:scale-105 transition-transform duration-300 flex flex-col p-4"
   data-aos="fade-up"
   data-aos-delay={Math.min(index * 50, 200)} // reduced delay
 >

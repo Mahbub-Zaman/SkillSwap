@@ -38,7 +38,7 @@ const TopProviders = () => {
       >
         {providers.map((provider, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 text-center transition-transform transform hover:scale-105 duration-300">
+            <div className="bg-[var(--color-neutral)] rounded-2xl shadow-md hover:shadow-lg p-6 text-center transition-transform transform hover:scale-105 duration-300">
               <img
                 src={provider.image}
                 alt={provider.providerName}
