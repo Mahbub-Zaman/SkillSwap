@@ -2,7 +2,7 @@
 
 **SkillSwap** is an interactive platform designed for individuals to offer, learn, and trade skills within their local community. Whether you want guitar lessons, language exchange, coding help, or yoga training, SkillSwap allows you to browse listings, rate experiences, and connect with local skill providers effortlessly.
 
-![SkillSwap Preview](https://i.postimg.cc/hPSVm9rd/screencapture-skillswap-mahbub-netlify-app-2025-10-24-05-42-23.jpg)
+![SkillSwap Preview](https://i.postimg.cc/7YFRsqDP/Skill-Swap.png)
 
 ---
 
@@ -102,8 +102,7 @@ npm run dev
 
 ## 📌 Future Improvements
 
-* Add **AI chatbot** 
-* Add **dark mode UI**  
+* Add **AI chatbot**   
 * Enable **booking and scheduling** features  
 * Implement persistent storage with **Firebase** or **MongoDB**  
 
