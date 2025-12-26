@@ -48,17 +48,17 @@ const FAQPage = () => {
             key={index}
             data-aos="fade-up"
             data-aos-delay={index * 100}
-            className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+            className=" bg-[var(--color-neutral)] p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <div
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center cursor-pointer"
             >
-              <h3 className="text-lg font-semibold">{faq.question}</h3>
-              {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
+              <h3 className="text-lg text-primary font-bold">{faq.question}</h3>
+              {openIndex === index ? <FaChevronUp className="text-primary" /> : <FaChevronDown className="text-primary" />}
             </div>
             {openIndex === index && (
-              <p className="mt-3 text-gray-700">{faq.answer}</p>
+              <p className="mt-3 font-normal">{faq.answer}</p>
             )}
           </div>
         ))}

@@ -47,7 +47,7 @@ const DashboardSkills = () => {
         {skills.map((skill) => (
           <div
             key={skill.skillId}
-            className="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row gap-4 p-4"
+            className="bg-[var(--color-neutral)] rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row gap-4 p-4"
           >
             {/* Image */}
             <div className="rounded-lg overflow-hidden md:w-1/3">
@@ -62,14 +62,14 @@ const DashboardSkills = () => {
             <div className="flex-1 flex flex-col justify-between ml-3">
               <div>
                 <h2 className="text-lg font-semibold mb-2">{skill.skillName}</h2>
-                <p className="text-gray-500 text-sm mb-2">By {skill.providerName}</p>
+                <p className="text-gray-500 font-semibold text-sm mb-2">By {skill.providerName}</p>
                 <div className="flex justify-between items-center mb-2">
                   <p className="text-yellow-500 font-semibold">⭐ {skill.rating}</p>
                   <span className="bg-purple-100 text-purple-700 px-3 py-1 text-xs rounded-full font-medium">
                     #{skill.category}
                   </span>
                 </div>
-                <p className="text-gray-600 text-sm mb-2 line-clamp-3">{skill.description}</p>
+                <p className="font-semibold text-sm mb-2 line-clamp-3">{skill.description}</p>
               </div>
 
               {/* Category & Buttons */}

@@ -60,7 +60,7 @@ const SkillDetails = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-[#efefef88] rounded-lg shadow-md mt-3">
+    <div className="max-w-4xl mx-auto p-6 bg-[var(--color-neutral)] rounded-lg shadow-md mt-8">
       <Toaster />
       
       {/* Skill Image */}

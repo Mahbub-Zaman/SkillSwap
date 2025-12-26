@@ -61,7 +61,7 @@ const Chart = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-8 text-center">Dashboard</h1>
-      <div className="bg-white rounded-xl shadow-lg p-6">
+      <div className=" bg-[var(--color-neutral)] rounded-xl shadow-lg p-6">
         <ResponsiveContainer width="100%" height={400}>
           <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
