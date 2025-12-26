@@ -9,7 +9,7 @@ const Footer = () => {
                 <aside className="flex flex-col ml-0 md:ml-12">
                     <img src="/skill.png" alt="SkillSwap Logo" className="w-14 h-14 mb-2" />
                     <h2 className="text-2xl font-bold">SkillSwap</h2>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm font-normal">
                         A Local Skill Exchange Platform for individuals <br /> to offer, learn, and trade skills within their local area.
                     </p>
                 </aside>

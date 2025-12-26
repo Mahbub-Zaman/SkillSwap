@@ -25,7 +25,7 @@ const MainLayout = () => {
       {loading && <Loader />}
 
       <NavBar />
-      <div className="min-h-screen">
+      <div>
         <Outlet />
       </div>
       <Footer />
